@@ -1,0 +1,169 @@
+---
+layout: evergreen
+title: Linux Desktop
+mathjax: true
+description: "Linux distributions are commonly recommended for user freedom and privacy. This page will go over distribution selection and general configuration for privacy and security. This is not a guide on how to use Linux."
+---
+
+<h2 id="beginner-friendly" class="anchor">
+    <a href="#traditional"><i class="fas fa-link anchor-icon"></i></a>
+    Traditional distributions
+</h2>
+
+<p>These distributions are recommended on the basis that they ship close to vanilla packages and stay very close to upstream, allowing them to get security features/bug fixes very quickly.</p>
+
+{% for item_hash in site.data.operating-systems.linux-desktop %}
+{% assign item = item_hash[1] %}
+
+{% if item.type == "Recommendation" %}
+{% include recommendation-card.html %}
+{% endif %}
+
+{% endfor %}
+
+<h2 id="immutable" class="anchor">
+    <a href="#immutable"><i class="fas fa-link anchor-icon"></i></a>
+    Immutable distributions
+</h2>
+
+<p>These distributions are recommended as they have <a href="#atomic">atomic</a> updates, allowing users to update their systems very liberally without fear of instability and breakage.</p>
+
+{% for item_hash in site.data.operating-systems.linux-desktop-immutable %}
+{% assign item = item_hash[1] %}
+
+{% if item.type == "Recommendation" %}
+{% include recommendation-card.html %}
+{% endif %}
+
+{% endfor %}
+
+<h2 id="tor" class="anchor">
+    <a href="#tor"><i class="fas fa-link anchor-icon"></i></a>
+    Tor focused distributions
+</h2>
+
+<p>These distributions are recommended as they focus on providing anonimity for the user.</p>
+
+{% for item_hash in site.data.operating-systems.linux-desktop-tor %}
+{% assign item = item_hash[1] %}
+
+{% if item.type == "Recommendation" %}
+{% include recommendation-card.html %}
+{% endif %}
+
+{% endfor %}
+
+<h2 id="distro-choice" class="anchor">
+    <a href="#distro-choice"><i class="fas fa-link anchor-icon"></i></a>
+    Choosing your distribution
+</h2>
+
+<h5>Release cycle</h5>
+<p>Using a distribution that stays close to upstream is highly recommended. Avoid distributions with frozen packages, as they are often quite behind on security updates. Debian for example famously was falling behind on Firefox-ESR updates for <a href="https://tracker.debian.org/pkg/firefox-esr">2 months</a>, in one of which their version (78) was deemed end of life by Mozilla. They also cannot keep up with Chromium updates, leading to them having an outdated package with a bunch of <a href="https://tracker.debian.org/pkg/chromium">vulnerabilities</a>. Most notably, Debian <a href="https://www.debian.org/security/faq#handling">only</a> backport security fixes that have recieved a <a href="https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures">CVE</a>. A lot of security fixes <a href="https://arxiv.org/abs/2105.14565">do not</a> recieve a CVE at all, and do not make it to an LTS distribution with this patching model. Sometimes, minor security fixes are also held back until the next release of Debian.</p>
+<p>Beyond just security, holding packages back and applying a bunch of backports fundamentally just does not work that well. <a href="https://rootco.de">Richard Brown</a> has a really great presentation about this:</p>
+
+<iframe width="731" height="411" src="https://www.youtube.com/embed/i8c0mg_mS7U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Overall, unless you need 24/7/365 uptime (which you will not need on a laptop or desktop computer), there is no point in using ancient LTS distributions.</p>
+
+<h5>"Security focused" distributions</h5>
+<p>There is common misconception about "security focused" distributions among Linux newcomers.</p>
+<p>Distributions like Whonix and Tails are designed with your own security in mind. They are meant to protect you. If you are looking for security, anonimity, etc, these are the distributions you should be using.</p>
+<p>Other distributions like Kali Linux, Black Arch, Parrot OS, etc are penetration testing distributions. They are meant to be used as an attacker machine, not as a tool to protect you, the end user. Avoid using these distributions as your daily driver.</p>
+
+<h5>Arch-based distributions</h5>
+<p>Arch based systems are not recommended for new users, regardless of the distribution. Arch does not have an update mechanism for the software stack using pacman, and the user is expected to maintain their own system and swapping out components of the stack when they become obsolete.</p>
+<p>The user is also expected to have sufficient Linux knowledge to properly set up security for their system such as enabling a mandatory access control system, doing firewalling, setting up kernel module blacklists, hardening boot parameters and sysctl, and so on. Simply getting the system installed is not enough.</p>
+
+<h2 id="atomic" class="anchor">
+    <a href="#atomic"><i class="fas fa-link anchor-icon"></i></a>
+    Atomic/Transactional update
+</h2>
+
+<p>If you are not comfortable with fast moving distributions, consider using one with an atomic or transactional update system.</p>
+<p>In a system with atomic update, and update is either applied fully or completely diregarded. An update cannot suddenly fail and be applied half way through. Typically, a system with atomic update will provide an easy way to roll the system back to a previous state should a bug occur after an update as well.</p>
+<p><a href="https://blog.samalik.com/">Adam Samalik</a> has a great demonstration of how rpm-ostree and atomic updates work:</p>
+<iframe width="731" height="411" src="https://www.youtube.com/embed/-hpV5l-gJnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>In a system with transactional update, a snapshot is of the system is created before and after the update is applied. Should something go wrong during or after the update is applied, the user can easily roll the system back to its previous state.</p>
+<p><a href="https://www.suse.com">SUSE</a> has a demonstration of a full system rollback with their transactional server:</p>
+<iframe width="765" height="411" src="https://www.youtube.com/embed/AeU_orsOCNI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Overall, we believe that for desktop usage, it is better to use an up to date distribution with a rollback mechanism than holding onto an outdated "Frankenstein" distribution.</p>
+
+<h2 id="getting-started" class="anchor">
+    <a href="#getting-started"><i class="fas fa-link anchor-icon"></i></a>
+    Getting started
+</h2>
+
+<p>If you are a new Linux user and want a quick look at Linux desktop experience, we recommend checking out this Fedora 34 first impression video:</p>
+<iframe width="731" height="411" src="https://www.youtube.com/embed/6wqb-j4GBVE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="general-recommendations" class="anchor">
+    <a href="#general-recommendations"><i class="fas fa-link anchor-icon"></i></a>
+    General recommendations
+</h2>
+
+<h5>Desktop environment/Window managers</h5>
+<p>Along with your choice of a distribution, your choice of a desktop environment or window manager is integral to your Linux experience. However, there are a few things you should consider in regards to security and privacy.</p>
+<p>On Linux, the Xorg display server is extremely problematic. It was never designed with access control in mind, and all xorg windows can access all of the other xorg windows. Effectively, this allows any app to keylog and record the user's screen without any permission.</p>
+<p>Nested X11 solutions like Xpra and Xephr can sandbox Xorg windows, but they come with a great performance cost and a lot of inconveniences.</p>
+<p><a href="https://wayland.freedesktop.org/">Wayland</a> solves this problem by isolating each window and requring apps to request permission for screen recording. Thus, we only recommend using desktop environments/window managers that works with Wayland. As of now, the list of desktop environments/window managers that support Wayland includes <a href="https://www.gnome.org">GNOME</a>, <a href="https://kde.org">KDE</a>, and <a href="https://swaywm.org">Sway</a>.</p>
+
+<h5>Drive Encryption</h5>
+<p>Unlike Bitlocker on Windows and FileVault on macOS, LUKS encryption on Linux is very problematic to set up after a system has been installed. We recommend that you enable drive encryption during the installation process of any Linux distributions.</p>
+
+<h5>Sandboxing</h5>
+<p>On Linux, app sandboxing and access control are extremely lacking compared to macOS and ChromeOS. User applications installed via traditional package managers typically have no confinement whatsoever. We will discuss a few common sandboxing methods below:</p>
+
+<h6><strong>1. Flatpak</strong></h6>
+<p><a href="https://flatpak.org/">Flatpak</a> first and foremost is a universal package manager for Linux. It's primary function so to be a package format which can be used in most Linux distributions. However, it does come with the benefit of giving the user some form of permission control.</p>
+<p>It should be noted that Flatpak's sandbox is quite weak laid out in <a href="https://madaidans-insecurities.github.io/linux.html#flatpak">this article</a>.</p>
+<p>The problem with Flatpak's laxed high level permissions could be mitigated by using an application called <a href="https://flathub.org/apps/details/com.github.tchx84.Flatseal">Flatseal</a>. Consider revoking the access to the network socket (internet access), the pulse audio socket (for both audio in and out), <code>device=all</code> (access to all devices including the camera), <code>org.freedesktop.secrets</code> dbus (access to secrets stored on your keychain) for applications which do not need it. If an application works natively with Wayland (and not running through the XWayland compatibility layer), consider revoking their access to he X11 socket as well. Broad filesystem permissions such as <code>filesystem=home</code> and <code>filesystem=host</code> should be revoked and replaced with just the directories the app should be allowed to access.</p>
+<p>However, problems like hard-coded access to some kernel interfaces like <code>/sys</code> and <code>/proc</code> and a weak seccomp filter still remain and cannot be solved by user.</p>
+
+<h6><strong>2. Firejail</strong></h6>
+<p>Firejail is another common sandboxing technique. It is, however, a giant SUID binary and has a large attack surface. In short, Firejail makes the system safer from processes that are confined by it, but less safe from processes running outside of it. In general, the usage of Firejail is not recommended. More information on this can be found in Madaidan's <a href="https://madaidans-insecurities.github.io/linux.html#firejail">article</a>.</p>
+
+<h5>Proprietary firmware/microcode updates</h5>
+<p>On libre or DIY distributions, the proprietary microcode update often does not come installed by default. We <strong>highly recommend</strong> that you install the microcode updates, as your CPU is already running the proprietary microcode anyways. Your choices boil down to using an oudated microcode with known security vulnerabilities or an updated one with the fixes for those vulnerabilities, and there is no reason to choose the former.</p>
+<p>If you are using Fedora or openSUSE, you do not have to worry about installing the microcode updates, as they are already installed by default.</p>
+
+<h5>Mac address randomization</h5>
+<p>If you are using Network Manager (the default on Fedora, openSUSE, etc), follow <a href="https://fedoramagazine.org/randomize-mac-address-nm/">this guide</a> on how to enable randomized mac addresses. We recommend changing the setting to <code>random</code> as opposed to <code>stable</code> like in the article.</p>
+<p>If you are using systemd-networkd, Wicked or another network managing solution, refer to the projects' own documentations on how to set this up.</p>
+
+<h5>Other identifiers</h5>
+<p>Consider following section <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#hostnames">10.1</a>, <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#timezones-locales-keymaps">10.2</a>, and <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#machine-id">10.3</a> on Madaidan's <a href="https://madaians-insecurities.github.io/guides/linux-hardening.html#identifiers">hardening guide</a>.</p>
+
+<h5>System counting</h5>
+<p>Fedora has fairly interesting <a href="https://fedoraproject.org/wiki/Changes/DNF_Better_Counting">mechanism</a> which does not involve using unique ids to count its users. According to man pages, it appears to be off by default for DNF based systems right now. However, if you are uncomfortable with this, we recommend adding <code>countme=false</code> to <code>/etc/dnf/dnf.conf</code> just in case it is enabld in the future. On rpm-ostree based systems, follow <a href="https://fedoramagazine.org/getting-better-at-counting-rpm-ostree-based-systems/">this guide</a> to disable system counting.</p>
+<p>openSUSE uses a unique ID system to track the number of installations by default. Consider following <a href="https://en.opensuse.org/openSUSE:Statistics">this guide</a> to opt out.</p>
+
+<h5>Firewalls</h5>
+
+<h2 id="general-recommendations" class="anchor">
+    <a href="#additional-hardening"><i class="fas fa-link anchor-icon"></i></a>
+    Additional Hardening
+</h2>
+<p>Hardening Linux is quite hard, as one must balance between the usability and the security of the system. This guide is not meant to be a complete guide on hardening Linux, but rather a few recommendations that are relatively easily to apply to most systems without detrimental effects on the user experience. This section is written primarily for semi-experienced and experienced users, so if you are new to Linux and don't understand what is mentioned below, feel free to skip it.</p>
+
+<h5>Kernel hardening</h5>
+<p>Consider following section <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl">2.2</a>, <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#boot-parameters">2.3</a> and <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#kernel-attack-surface-reduction">2.5</a> on Madaidan's <a href="https://madaians-insecurities.github.io/guides/linux-hardening.html#identifiers">hardening guide</a> for sysctl and boot parameters hardening and kernel attack surface reduction.</p>
+<p>Note that setting <code>kernel.unprivileged_userns_clone=0</code> will stop Flatpak, Podman, Docker, LXC containers from working. Do not set this flag if you are using those technologies.</p>
+
+<h5>Linux-Hardened</h5>
+<p>Certain distributions like Arch Linux comes with linux-hardended, a kernel package with hardening patches and more security concious defaults.</p>
+<p>Linux-Hardned comes with <code>kernel.unprivileged_userns_clone=0</code> by default. If you are using Flatpak, Podman, Docker, LXC containers or other technologies that relies on unpriviledged user namespaces, consider setting <code>kernel.unprivileged_userns_clone=1</code>.</p>
+
+<h5>Hardened memory allocator</h5>
+<p>The <a href="https://github.com/GrapheneOS/hardened_malloc">hardened memory allocator</a> from <a href="https://grapheneos.org/">GrapheneOS</a> can be used on Linux distributions. It is available by default on Whonix and is available as an <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">AUR package</a> on Arch based distributions. If you are using the AUR package, consider setting up <code>LD_PRELOAD</code> as described in the <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">Arch Wiki</a>.</p>
+
+<h5>USBGuard</h5>
+<p>Consider following the <a href="https://wiki.archlinux.org/title/USBGuard">Arch Wiki</a> to set up USBGuard.</p>
+
+<h5>Keystroke anonymization</h5>
+<p>Theoratically, a user's keystrokes could be used to <a href="https://www.whonix.org/wiki/Keystroke_Deanonymization">deanonymize</a> them. The Whonix project includes a daemon called Kloak to help mitigate this problem. The prebuilt package is also available for other Debian based distributions via <a href="https://www.whonix.org/wiki/Packages_for_Debian_Hosts">Whonix's repository</a> and Arch based distributions via the <a href="https://aur.archlinux.org/packages/kloak-git">AUR</a>. Consider installing Kloak if this is a threat.</p>
+
+<h5>Physical security</h5>
+<p>Consider following section <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#physical-security">21</a> on Madaidan's <a href="https://madaians-insecurities.github.io/guides/linux-hardening.html#identifiers">hardening guide</a>.</p>
+<p>By default, UEFI secure boot on Linux distributions is rather in effective. Besides the problems mentioned in Madaidan's guide as only the chainloader (shim), the boot loader (GRUB), and the kernel are verified. The initramfs is often left unverified, unencrypted, and open up the window for an <a href="https://en.wikipedia.org/wiki/Evil_maid_attack">evil maid</a> attack.</p>
+<p>This problem could be reduced by either <a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot">combinding the kernel, initramfs, and microcode</a> into a signed EFI stub or by encrypting the <code>/boot</code> partition. If you are using openSUSE, your <code>/boot</code> partition should be encrypted by default should you enable drive encrytion.</p>

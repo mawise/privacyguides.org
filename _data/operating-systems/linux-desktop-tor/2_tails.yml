@@ -1,0 +1,11 @@
+title: Tails
+type: Recommendation
+logo: /assets/img/linux-desktop/tails.svg
+description: |
+  <strong>Tails</strong> is a live operating system based on Debian that routes all communications through Tor.
+  
+  It can boot on almost any computer from a DVD, USB stick, or SD card the control. It aims at preserving privacy and anonymity, and circumventing censorship while leaving no trace on the computer.
+
+  By design, Tails is meant to completely reset itself after each reboot. However, the user can optionally choose to make <a href="https://tails.boum.org/doc/first_steps/persistence/index.en.html">encrypted persistent directories</a>.
+
+website: 'https://tails.boum.org'

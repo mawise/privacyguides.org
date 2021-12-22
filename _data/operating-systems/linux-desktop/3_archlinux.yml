@@ -1,0 +1,17 @@
+title: Arch Linux
+type: Recommendation
+logo: /assets/img/linux-desktop/archlinux.svg
+description: |
+  <strong>Arch Linux</strong> is a simple, lightweight, do-it-yourself (DIY) distribution.
+
+  Arch Linux has a rolling release cycle. There is no fixed release schedule, and packages are updated very frequently.
+
+  Being a DIY distribution, the user is expected to setup and maintain their entire software stack. Since September 2020, Arch has have an <a href="https://wiki.archlinux.org/title/Archinstall">official installer</a> to ease off the installation process; however, the user is still expected to maintain the software stack themselves.
+
+  Arch Linux ships a mix of free and proprietary packages in its repositories. For missing packages, the user can obtain them from the Arch User Repository (AUR). Since AUR packages can be uploaded by anyone at any time, the user must take extra precaution with these packages, reviewing the PKGBUILD and all install scripts to before installing them.
+
+  A large portion of Arch Linux's packages are <a href="https://reproducible.archlinux.org/">reproducible</a>.
+
+  The learning curve for Arch and Arch-based distributions is extremely steep and they should not be used by new Linux users.
+website: 'https://archlinux.org'
+privacy_policy: 'https://wiki.archlinux.org/index.php/ArchWiki:Privacy_policy'

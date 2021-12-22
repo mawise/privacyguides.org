@@ -1,0 +1,13 @@
+title: openSUSE MicroOS
+type: Recommendation
+logo: /assets/img/linux-desktop/opensuse-microos.svg
+description: |
+  <strong>openSUSE MicroOS</strong> is an advanced immutable variant of openSUSE with a strong focus on container workflows.
+
+  openSUSE MicroOS is based on openSUSE Tumbleweed and is released together with it. If either Tumbleweed or MicroOS does not pass the quality checks by the <a href="https://build.opensuse.org">openSUSE Build Service</a>, both variants will not get their new release until the issues are fixed.
+
+  MicroOS take's Tumbleweed's transactional update system and turn it into an atomic one. For each update, MicroOS creates a new read-write BTRFS snapshot of its current system, apply the changes to the new BTRFS snapshot, then reboot to the new snapshot and mount it as read-only.
+
+  <a href="https://www.flatpak.org">Flatpak</a> is the primary package installation method on openSUSE MicroOS, as operating system is meant to be modified as little as possible. Alternatively, the user can use <a href="https://archive.fosdem.org/2021/schedule/event/containers_toolbox/attachments/slides/4564/export/events/attachments/containers_toolbox/slides/4564/By_the_Power_of_Toolbox_Faggioli_FOSDEM21.pdf">Toolbox</a> to create <a href="https://podman.io">Podman</a> containers with a shared home directory with the host operating system and mimic a traditional openSUSE environment.
+
+website: 'https://get.opensuse.org/microos/'

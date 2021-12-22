@@ -1,0 +1,13 @@
+title: openSUSE Tumbleweed
+type: Recommendation
+logo: /assets/img/linux-desktop/opensuse-tumbleweed.svg
+description: |
+  <strong>openSUSE Tumbleweed</strong> stands out as a very stable rolling distribution.
+
+  While Tumbleweed follows a rolling release model, each update is release as a snapshot of the distribution. The user upgrades their system to a new snapshot rather than updating individual packages like a normal rolling release distribution. Each snapshot is run through a series of automated test by the <a href="https://build.opensuse.org">openSUSE Build Service</a> to ensure its quality.
+
+  openSUSE Tumbleweed sports a transactional update system with <a href="https://en.wikipedia.org/wiki/Btrfs">BTRFS</a> and <a href="https://en.opensuse.org/openSUSE:Snapper_Tutorial">Snapper</a> - a snapshot of the system is created immediately before and after each action with its package manager for easy rollback.
+
+  The learning curve for openSUSE is steeper than Fedora due to <a href="https://en.opensuse.org/SDB:Zypper_usage">Zypper</a> being fairly different from package managers on other Linux distributions. However, for users who are interested in doing system administration but are not fully comfortable with the terminal yet, <a href="https://yast.opensuse.org">YAST</a> provides a powerful interface for fine tuning the system.
+
+website: 'https://get.opensuse.org/tumbleweed/'

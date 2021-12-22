@@ -1,0 +1,16 @@
+title: Fedora Silverblue/Kinoite
+type: Recommendation
+logo: /assets/img/linux-desktop/fedora-silverblue.svg
+description: |
+  <strong>Fedora Silverblue</strong> and <strong>Fedora Kinoite</strong> are advanced, immutable variants of Fedora with a strong focus on container workflows. Silverblue comes with the GNOME desktop environment, Kinoite comes with KDE.
+
+  These variants follow the same release schedule as Fedora Workstation, benefiting from the same fast updates and staying very close to upstream.
+
+  They replace the <a href="https://fedoraproject.org/wiki/DNF">DNF</a> package manager with a much more advanced alternative called <a href="https://docs.fedoraproject.org/en-US/fedora/rawhide/system-administrators-guide/package-management/rpm-ostree/">rpm-ostree</a>. rpm-ostree works by downloading a base image for the system, then overlaying packages over it in a git-like commit tree. When the system is updated, a new base image is downloaded, and the overlays will be applied to that new image. Then the system reboots into the new deployment. By default, rpm-ostree keeps 2 deployments of the system so that a user can easily rollback if something breaks in the new deployment. User can also pin more deployments as needed.
+
+  The base images are released in different streams. When a new release comes out, the user needs to rebase to a different stream. For example, if the user is on the Silverblue 34 stream, they have to rebase to the Silverblue 35 stream to update to Fedora 35. Silverblue and Kinoite are on 2 seperate streams, and they can be converted to each other by rebasing.
+
+  <a href="https://www.flatpak.org">Flatpak</a> is the primary package installation method on these distrbutions, as rpm-ostree is only meant to overlay packages cannot stay inside of a container on top of the base image. Alternatively, the user can use <a href="https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/">Toolbox</a> to create <a href="https://podman.io">Podman</a> containers with a shared home directory with the host operating system and mimic a traditional Fedora environment.
+
+website: 'https://silverblue.fedoraproject.org'
+privacy_policy: 'https://wiki.archlinux.org/index.php/ArchWiki:Privacy_policy'
