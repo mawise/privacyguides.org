@@ -139,6 +139,19 @@ description: "Linux distributions are commonly recommended for user freedom and 
 <p>openSUSE uses a unique ID system to track the number of installations by default. Consider following <a href="https://en.opensuse.org/openSUSE:Statistics">this guide</a> to opt out.</p>
 
 <h5>Firewalls</h5>
+<p>You should have an inbound Firewall to block connections to your computer at all times. Considering Red Hat's <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-and-configuring-firewalld_configuring-and-managing-networking">documentation</a> on how to setup Firewalld or Ubuntu's <a href="https://help.ubuntu.com/community/UFW">documentation</a> on how to setup UFW.</p>
+<p>Note that these firewall solutions are just frontends to create persistent IPTables rules on your system. An application can still bypass them by creating their own IPTables rules higher up in the IPTables chain. Docker and Podman do exactly this and have their containers bypass Firewalld/UFW rules if their container if a port is mapped to their containers.</p>
+<p>Fedora comes with Firewalld by default, however, their rules are very permissive by default. Consider closing port 1000-65535 with both TCP and UDP after the operating system installation. You should also remove the whitelist for <code>smb-client</code> and <code>mdns</code> services if you do not use them.</p>
+<p>If you are using Flatpak packages, you can revoke their network socket access using Flatseal and prevent them from accessing your network. This permission is not bypassable.</p>
+<p>If you are using non-classic Snap packages on a system with proper snap confinement support (with both AppArmor and CGroupsv1 present), you can use the Snap Store to revoke network permission as well. This is also not bypassable.</p>
+<p>For unconfined applications, solutions like <a href="https://github.com/evilsocket/opensnitch">OpenSnitch</a> and <a href="https://safing.io/portmaster/">Portmaster</a> may help. These applications uses IPTables rules to block network access and are also likely bypassable.</p>
+
+<h5>Mandatory Access Control</h5>
+<p>Mandatory access control systems on Linux Desktop are largely ineffective policies/profiles, however, it is still worth it to keep them enabled.</p>
+<p>On Fedora, SELinux comes preconfigured with targetted policies and will confine system daemons out of the box. We recommend that you never turn off SELinux or put it into permissive mode on Fedora.</p>
+<p>On openSUSE, the user has a choice of AppArmor or SELinux during the installation process. We recommend sticking to the default for each variant (AppArmor for Tumbleweed and SELinux for MicroOS). openSUSE's SELinux policies are derived from those from Fedora.</p>
+<p>Arch and Arch-based operating systems often do not come with a mandatory access control system out of the box. We highly recommend that you follow the <a href="https://wiki.archlinux.org/title/AppArmor">Arch Wiki</a> to set up AppArmor.</p>
+<p>For advanced users, we also recommend making additional policies/profiles for your mandatory access control system.</p>
 
 <h2 id="general-recommendations" class="anchor">
     <a href="#additional-hardening"><i class="fas fa-link anchor-icon"></i></a>
