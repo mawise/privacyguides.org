@@ -165,7 +165,7 @@ description: "Linux distributions are commonly recommended for user freedom and 
 
 <h5>Linux-Hardened</h5>
 <p>Certain distributions like Arch Linux comes with linux-hardended, a kernel package with hardening patches and more security concious defaults.</p>
-<p>Linux-Hardned comes with <code>kernel.unprivileged_userns_clone=0</code> by default. If you are using Flatpak, Podman, Docker, LXC containers or other technologies that relies on unpriviledged user namespaces, consider setting <code>kernel.unprivileged_userns_clone=1</code>.</p>
+<p>Linux-Hardened comes with <code>kernel.unprivileged_userns_clone=0</code> by default. If you are using Flatpak, Podman, Docker, LXC containers or other technologies that relies on unpriviledged user namespaces, consider setting <code>kernel.unprivileged_userns_clone=1</code>.</p>
 
 <h5>Hardened memory allocator</h5>
 <p>The <a href="https://github.com/GrapheneOS/hardened_malloc">hardened memory allocator</a> from <a href="https://grapheneos.org/">GrapheneOS</a> can be used on Linux distributions. It is available by default on Whonix and is available as an <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">AUR package</a> on Arch based distributions. If you are using the AUR package, consider setting up <code>LD_PRELOAD</code> as described in the <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">Arch Wiki</a>.</p>
