@@ -13,4 +13,4 @@ description: |
   <a href="https://www.flatpak.org">Flatpak</a> is the primary package installation method on these distrbutions, as rpm-ostree is only meant to overlay packages cannot stay inside of a container on top of the base image. Alternatively, the user can use <a href="https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/">Toolbox</a> to create <a href="https://podman.io">Podman</a> containers with a shared home directory with the host operating system and mimic a traditional Fedora environment.
 
 website: 'https://silverblue.fedoraproject.org'
-privacy_policy: 'https://wiki.archlinux.org/index.php/ArchWiki:Privacy_policy'
+privacy_policy: 'https://fedoraproject.org/wiki/Legal:PrivacyPolicy#:~:text=Fedora%20may%20share%20your%20personal,described%20in%20this%20Privacy%20Statement.'
