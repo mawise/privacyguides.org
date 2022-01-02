@@ -167,9 +167,13 @@ description: "Linux distributions are commonly recommended for privacy protectio
 <h5>Hardened memory allocator</h5>
 <p>The <a href="https://github.com/GrapheneOS/hardened_malloc">hardened memory allocator</a> from <a href="https://grapheneos.org/">GrapheneOS</a> can be used on Linux distributions. It is available by default on Whonix and is available as an <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">AUR package</a> on Arch based distributions. If you are using the AUR package, consider setting up <code>LD_PRELOAD</code> as described in the <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">Arch Wiki</a>.</p>
 
+<h5>Swap</h5>
+<p>Consider using <a href="https://wiki.archlinux.org/title/Swap#zram-generator">ZRAM</a> or <a href="https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption">encrypted SWAP</a> instead of unencrypted swap to avoid potential security issues with sensitive data being pushed to swap space.</p>
+<p>On Fedora, ZRAM is configured out of the box.</p>
+
 <h5>Umask</h5>
-<p>If you are not using openSUSE, consider changing the default UMASK for both regular users and root to 077.</p>
-<p>Changing UMASK to 077 tends to break snapper on openSUSE and is not recommended.</p>
+<p>If you are not using openSUSE, consider changing the default umask for both regular users and root to 077.</p>
+<p>Changing umask to 077 tends to break snapper on openSUSE and is not recommended.</p>
 
 <h5>Mountpoint hardening</h5>
 Consider adding <code>nodev</code>, <code>noexec</code>, <code>nosuid</code> to mountpoints which do not need them. Typically, these could be applied to <code>/boot</code>, <code>/boot/efi</code>, <code>/home</code>, <code>/root</code>, <code>/var</code>.
