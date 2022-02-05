@@ -97,10 +97,13 @@ Linux is a great choice if your goal is to:
 <p>Arch based systems are not recommended for new users, regardless of the distribution. Arch does not have an update mechanism for the software stack using pacman, and the user is expected to maintain their own system and swapping out components of the stack when they become obsolete.</p>
 <p>The user is also expected to have sufficient Linux knowledge to properly set up security for their system such as enabling a mandatory access control system, doing firewalling, setting up kernel module blacklists, hardening boot parameters and sysctl, and so on. Simply getting the system installed is not enough.</p>
 
-<h2 id="getting-started" class="anchor">
-    <a href="#getting-started"><i class="fas fa-link anchor-icon"></i></a>
-    Getting started
+<h2 id="os-installation" class="anchor">
+    <a href="#os-installation"><i class="fas fa-link anchor-icon"></i></a>
+    OS installation
 </h2>
+
+<h5>Drive Encryption</h5>
+<p>Unlike Bitlocker on Windows and FileVault on macOS, LUKS encryption on Linux is very problematic to set up after a system has been installed. We recommend that you enable drive encryption during the installation process of any Linux distributions.</p>
 
 <h5>Desktop environment/Window managers</h5>
 <p>Along with your choice of a distribution, your choice of a desktop environment or window manager is integral to your Linux experience. However, there are a few things you should consider in regards to security and privacy.</p>
@@ -108,8 +111,21 @@ Linux is a great choice if your goal is to:
 <p>Nested X11 solutions like Xpra and Xephr can sandbox Xorg windows, but they come with a great performance cost and a lot of inconveniences.</p>
 <p><a href="https://wayland.freedesktop.org/">Wayland</a> solves this problem by isolating each window and requring apps to request permission for screen recording. Thus, we only recommend using desktop environments/window managers that works with Wayland. As of now, the list of desktop environments/window managers that support Wayland includes <a href="https://www.gnome.org">GNOME</a>, <a href="https://kde.org">KDE</a>, and <a href="https://swaywm.org">Sway</a>.</p>
 
-<h5>Drive Encryption</h5>
-<p>Unlike Bitlocker on Windows and FileVault on macOS, LUKS encryption on Linux is very problematic to set up after a system has been installed. We recommend that you enable drive encryption during the installation process of any Linux distributions.</p>
+<h2 id="privacy-tweaks" class="anchor">
+    <a href="#privacy-tweaks"><i class="fas fa-link anchor-icon"></i></a>
+    Privacy tweaks
+</h2>
+
+<h5>Mac address randomization</h5>
+<p>If you are using Network Manager (the default on Fedora, openSUSE, etc), follow <a href="https://fedoramagazine.org/randomize-mac-address-nm/">this guide</a> on how to enable randomized mac addresses. We recommend changing the setting to <code>random</code> as opposed to <code>stable</code> like in the article.</p>
+<p>If you are using systemd-networkd, Wicked or another network managing solution, refer to the projects' own documentations on how to set this up.</p>
+
+<h5>Other identifiers</h5>
+<p>Consider following section <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#hostnames">10.1</a>, <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#timezones-locales-keymaps">10.2</a>, and <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#machine-id">10.3</a> on Madaidan's <a href="https://madaians-insecurities.github.io/guides/linux-hardening.html#identifiers">hardening guide</a>.</p>
+
+<h5>System counting</h5>
+<p>Fedora has fairly interesting <a href="https://fedoraproject.org/wiki/Changes/DNF_Better_Counting">mechanism</a> which does not involve using unique ids to count its users. According to man pages, it appears to be off by default for DNF based systems right now. However, if you are uncomfortable with this, we recommend adding <code>countme=false</code> to <code>/etc/dnf/dnf.conf</code> just in case it is enabld in the future. On rpm-ostree based systems, follow <a href="https://fedoramagazine.org/getting-better-at-counting-rpm-ostree-based-systems/">this guide</a> to disable system counting.</p>
+<p>openSUSE uses a unique ID system to track the number of installations by default. Consider following <a href="https://en.opensuse.org/openSUSE:Statistics">this guide</a> to opt out.</p>
 
 <h5>Sandboxing</h5>
 <p>On Linux, app sandboxing and access control are extremely lacking compared to macOS and ChromeOS. User applications installed via traditional package managers typically have no confinement whatsoever. We will discuss a few common sandboxing methods below:</p>
@@ -126,17 +142,6 @@ Linux is a great choice if your goal is to:
 <h5>Proprietary firmware/microcode updates</h5>
 <p>On libre or DIY distributions, the proprietary microcode update often does not come installed by default. We <strong>highly recommend</strong> that you install the microcode updates, as your CPU is already running the proprietary microcode anyways. Your choices boil down to using an oudated microcode with known security vulnerabilities or an updated one with the fixes for those vulnerabilities, and there is no reason to choose the former.</p>
 <p>If you are using Fedora or openSUSE, you do not have to worry about installing the microcode updates, as they are already installed by default.</p>
-
-<h5>Mac address randomization</h5>
-<p>If you are using Network Manager (the default on Fedora, openSUSE, etc), follow <a href="https://fedoramagazine.org/randomize-mac-address-nm/">this guide</a> on how to enable randomized mac addresses. We recommend changing the setting to <code>random</code> as opposed to <code>stable</code> like in the article.</p>
-<p>If you are using systemd-networkd, Wicked or another network managing solution, refer to the projects' own documentations on how to set this up.</p>
-
-<h5>Other identifiers</h5>
-<p>Consider following section <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#hostnames">10.1</a>, <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#timezones-locales-keymaps">10.2</a>, and <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#machine-id">10.3</a> on Madaidan's <a href="https://madaians-insecurities.github.io/guides/linux-hardening.html#identifiers">hardening guide</a>.</p>
-
-<h5>System counting</h5>
-<p>Fedora has fairly interesting <a href="https://fedoraproject.org/wiki/Changes/DNF_Better_Counting">mechanism</a> which does not involve using unique ids to count its users. According to man pages, it appears to be off by default for DNF based systems right now. However, if you are uncomfortable with this, we recommend adding <code>countme=false</code> to <code>/etc/dnf/dnf.conf</code> just in case it is enabld in the future. On rpm-ostree based systems, follow <a href="https://fedoramagazine.org/getting-better-at-counting-rpm-ostree-based-systems/">this guide</a> to disable system counting.</p>
-<p>openSUSE uses a unique ID system to track the number of installations by default. Consider following <a href="https://en.opensuse.org/openSUSE:Statistics">this guide</a> to opt out.</p>
 
 <h5>Firewalls</h5>
 <p>You should have an inbound Firewall to block connections to your computer at all times. Considering Red Hat's <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-and-configuring-firewalld_configuring-and-managing-networking">documentation</a> on how to setup Firewalld or Ubuntu's <a href="https://help.ubuntu.com/community/UFW">documentation</a> on how to setup UFW.</p>
