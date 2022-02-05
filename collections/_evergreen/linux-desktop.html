@@ -10,8 +10,6 @@ description: "Linux distributions are commonly recommended for privacy protectio
     Traditional distributions
 </h2>
 
-<p>These distributions are recommended because they ship mostly unmodified applications, which allow them to receive security/bug fixes very quickly.</p>
-
 {% for item_hash in site.data.operating-systems.linux-desktop %}
 {% assign item = item_hash[1] %}
 
@@ -25,8 +23,6 @@ description: "Linux distributions are commonly recommended for privacy protectio
     <a href="#immutable"><i class="fas fa-link anchor-icon"></i></a>
     Immutable distributions
 </h2>
-
-<p>These distributions are recommended as they have <a href="#atomic">atomic</a> updates, allowing users to update their systems very liberally without fear of instability and breakage.</p>
 
 {% for item_hash in site.data.operating-systems.linux-desktop-immutable %}
 {% assign item = item_hash[1] %}
