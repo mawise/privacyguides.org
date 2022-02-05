@@ -111,6 +111,10 @@ Linux is a great choice if your goal is to:
 <p>Nested X11 solutions like Xpra and Xephr can sandbox Xorg windows, but they come with a great performance cost and a lot of inconveniences.</p>
 <p><a href="https://wayland.freedesktop.org/">Wayland</a> solves this problem by isolating each window and requring apps to request permission for screen recording. Thus, we only recommend using desktop environments/window managers that works with Wayland. As of now, the list of desktop environments/window managers that support Wayland includes <a href="https://www.gnome.org">GNOME</a>, <a href="https://kde.org">KDE</a>, and <a href="https://swaywm.org">Sway</a>.</p>
 
+<h5>Proprietary firmware/microcode updates</h5>
+<p>On libre or DIY distributions, the proprietary microcode update often does not come installed by default. We <strong>highly recommend</strong> that you install the microcode updates, as your CPU is already running the proprietary microcode anyways. Your choices boil down to using an oudated microcode with known security vulnerabilities or an updated one with the fixes for those vulnerabilities, and there is no reason to choose the former.</p>
+<p>If you are using Fedora or openSUSE, you do not have to worry about installing the microcode updates, as they are already installed by default.</p>
+
 <h2 id="privacy-tweaks" class="anchor">
     <a href="#privacy-tweaks"><i class="fas fa-link anchor-icon"></i></a>
     Privacy tweaks
@@ -127,6 +131,11 @@ Linux is a great choice if your goal is to:
 <p>Fedora has fairly interesting <a href="https://fedoraproject.org/wiki/Changes/DNF_Better_Counting">mechanism</a> which does not involve using unique ids to count its users. According to man pages, it appears to be off by default for DNF based systems right now. However, if you are uncomfortable with this, we recommend adding <code>countme=false</code> to <code>/etc/dnf/dnf.conf</code> just in case it is enabld in the future. On rpm-ostree based systems, follow <a href="https://fedoramagazine.org/getting-better-at-counting-rpm-ostree-based-systems/">this guide</a> to disable system counting.</p>
 <p>openSUSE uses a unique ID system to track the number of installations by default. Consider following <a href="https://en.opensuse.org/openSUSE:Statistics">this guide</a> to opt out.</p>
 
+<h2 id="app-confinement" class="anchor">
+    <a href="#app-confinement"><i class="fas fa-link anchor-icon"></i></a>
+    App confinement
+</h2>
+
 <h5>Sandboxing</h5>
 <p>On Linux, app sandboxing and access control are extremely lacking compared to macOS and ChromeOS. User applications installed via traditional package managers typically have no confinement whatsoever. We will discuss a few common sandboxing methods below:</p>
 
@@ -139,9 +148,12 @@ Linux is a great choice if your goal is to:
 <h6><strong>2. Firejail</strong></h6>
 <p>Firejail is another common sandboxing technique. It is, however, a giant SUID binary and has a large attack surface. In short, Firejail makes the system safer from processes that are confined by it, but less safe from processes running outside of it. In general, the usage of Firejail is not recommended. More information on this can be found in Madaidan's <a href="https://madaidans-insecurities.github.io/linux.html#firejail">article</a>.</p>
 
-<h5>Proprietary firmware/microcode updates</h5>
-<p>On libre or DIY distributions, the proprietary microcode update often does not come installed by default. We <strong>highly recommend</strong> that you install the microcode updates, as your CPU is already running the proprietary microcode anyways. Your choices boil down to using an oudated microcode with known security vulnerabilities or an updated one with the fixes for those vulnerabilities, and there is no reason to choose the former.</p>
-<p>If you are using Fedora or openSUSE, you do not have to worry about installing the microcode updates, as they are already installed by default.</p>
+<h5>Mandatory Access Control</h5>
+<p>Mandatory access control systems on Linux Desktop are largely ineffective policies/profiles, however, it is still worth it to keep them enabled.</p>
+<p>On Fedora, SELinux comes preconfigured with targetted policies and will confine system daemons out of the box. We recommend that you never turn off SELinux or put it into permissive mode on Fedora.</p>
+<p>On openSUSE, the user has a choice of AppArmor or SELinux during the installation process. We recommend sticking to the default for each variant (AppArmor for Tumbleweed and SELinux for MicroOS). openSUSE's SELinux policies are derived from those from Fedora.</p>
+<p>Arch and Arch-based operating systems often do not come with a mandatory access control system out of the box. We highly recommend that you follow the <a href="https://wiki.archlinux.org/title/AppArmor">Arch Wiki</a> to set up AppArmor.</p>
+<p>For advanced users, we also recommend making additional policies/profiles for your mandatory access control system.</p>
 
 <h5>Firewalls</h5>
 <p>You should have an inbound Firewall to block connections to your computer at all times. Considering Red Hat's <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-and-configuring-firewalld_configuring-and-managing-networking">documentation</a> on how to setup Firewalld or Ubuntu's <a href="https://help.ubuntu.com/community/UFW">documentation</a> on how to setup UFW.</p>
@@ -151,18 +163,10 @@ Linux is a great choice if your goal is to:
 <p>If you are using non-classic Snap packages on a system with proper snap confinement support (with both AppArmor and CGroupsv1 present), you can use the Snap Store to revoke network permission as well. This is also not bypassable.</p>
 <p>For unconfined applications, solutions like <a href="https://github.com/evilsocket/opensnitch">OpenSnitch</a> and <a href="https://safing.io/portmaster/">Portmaster</a> may help. These applications uses nftables/iptables rules to block network access and are also likely bypassable.</p>
 
-<h5>Mandatory Access Control</h5>
-<p>Mandatory access control systems on Linux Desktop are largely ineffective policies/profiles, however, it is still worth it to keep them enabled.</p>
-<p>On Fedora, SELinux comes preconfigured with targetted policies and will confine system daemons out of the box. We recommend that you never turn off SELinux or put it into permissive mode on Fedora.</p>
-<p>On openSUSE, the user has a choice of AppArmor or SELinux during the installation process. We recommend sticking to the default for each variant (AppArmor for Tumbleweed and SELinux for MicroOS). openSUSE's SELinux policies are derived from those from Fedora.</p>
-<p>Arch and Arch-based operating systems often do not come with a mandatory access control system out of the box. We highly recommend that you follow the <a href="https://wiki.archlinux.org/title/AppArmor">Arch Wiki</a> to set up AppArmor.</p>
-<p>For advanced users, we also recommend making additional policies/profiles for your mandatory access control system.</p>
-
 <h2 id="general-recommendations" class="anchor">
     <a href="#additional-hardening"><i class="fas fa-link anchor-icon"></i></a>
     Additional Hardening
 </h2>
-<p>Hardening Linux is quite hard, as one must balance between the usability and the security of the system. This guide is not meant to be a complete guide on hardening Linux, but rather a few recommendations that are relatively easily to apply to most systems without detrimental effects on the user experience. This section is written primarily for semi-experienced and experienced users, so if you are new to Linux and don't understand what is mentioned below, feel free to skip it.</p>
 
 <h5>Kernel hardening</h5>
 <p>Consider following section <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl">2.2</a>, <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#boot-parameters">2.3</a> and <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#kernel-attack-surface-reduction">2.5</a> on Madaidan's <a href="https://madaians-insecurities.github.io/guides/linux-hardening.html#identifiers">hardening guide</a> for sysctl and boot parameters hardening and kernel attack surface reduction.</p>
