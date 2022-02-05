@@ -47,6 +47,31 @@ description: "Linux distributions are commonly recommended for privacy protectio
 
 {% endfor %}
 
+<h2 id="threat-model" class="anchor">
+    <a href="#threat-model"><i class="fas fa-link anchor-icon"></i></a>
+    Threat modeling
+</h2>
+
+<h5>Common misconception</h5>
+There is a common misconception that Linux desktop distributions are among the more secure and private operating systems simply because they are open source. This is far cry from reality. The development model does not determine the security or trustworthiness of a piece of software, as explained in <a href="https://blog.blueboxsec.org/post/the-illusion-of-open-source/">this blog post</a> by Madaidan (Whonix's security researcher). In fact, the desktop GNU/Linux software stack is architecturally inferior security wise compared to other operating systems such as macOS and ChromeOS as laid out in <a href="https://madaidans-insecurities.github.io/linux.html">this article</a>.
+For our purposes, from this point on in this page, we will use "Linux" to refer to the "desktop GNU/Linux distributions", which do not include other operating systems that uses the Linux kernel such as Android, ChromeOS, or QubesOS.
+
+<h5>When to use Linux</h5>
+Linux is a great choice if your goal is to:
+<ul>
+    <li>Avoid telemetry that often comes with proprietary operating systems</li>
+    <li>Maintain software freedom</li>
+    <li>Achieve anonimity (with distributions like Whonix or Tails)</li>
+</ul>
+
+<h5>When to not use Linux</h5>
+<strong>Do not</strong> use Linux if your threat model requires you to:
+<ul>
+    <li>Have resistence against persistent tampering by malware</li>
+    <li>Be able to run not-fully-trusted programs in a meaningful sandbox</li>
+    <li>Have strong exploit mitigations</li>
+</ul>
+
 <h2 id="distro-choice" class="anchor">
     <a href="#distro-choice"><i class="fas fa-link anchor-icon"></i></a>
     Choosing your distribution
@@ -59,8 +84,7 @@ description: "Linux distributions are commonly recommended for privacy protectio
 <iframe width="731" height="411" src="https://www.youtube.com/embed/i8c0mg_mS7U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <h5>"Security-focused" distributions</h5>
-<p>Distributions like Whonix and Tails are designed with your own security in mind. They are meant to protect you. If you are looking for security and anonymity, these are the distributions you should be using.</p>
-<p>Other distributions like Kali Linux, Black Arch, Parrot OS, etc are penetration testing distributions. They are meant to be used as an attacker machine, not as a tool to protect you, the end user. This is a common misconception about these distributions among Linux newcomers. Avoid using these distributions as your daily driver.</p>
+<p>Distributions like Kali Linux, Black Arch, Parrot OS, etc are penetration testing distributions. They are meant to be used as an attacker machine, not as a tool to protect you, the end user. This is a common misconception about these distributions among Linux newcomers. Avoid using these distributions as your daily driver.</p>
 
 <h5>Arch-based distributions</h5>
 <p>Arch based systems are not recommended for new users, regardless of the distribution. Arch does not have an update mechanism for the software stack using pacman, and the user is expected to maintain their own system and swapping out components of the stack when they become obsolete.</p>
