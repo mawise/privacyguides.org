@@ -12,6 +12,4 @@ description: |
 
   Nix is a source-based package manager - if there's no pre-built avalaible in the binary cache, Nix will just build the package from source using its definition. It builds each package in a sandboxed *pure* environment, which is as independent of the host system as possible, thus making binaries reproducible.
 
-  Due to NixOS having an unconventional filesystem layout, some apps need to be built specifically for NixOS, but Nixpkgs also includes utilities to provide a more common layout for programs that can not be rebuilt. As an example, this is useful for proprietary apps.
-
 website: 'https://nixos.org'
