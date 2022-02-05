@@ -2,7 +2,7 @@ title: NixOS
 type: Recommendation
 logo: /assets/img/linux-desktop/nixos.svg
 description: |
-  <strong>NixOS</strong> is an independent distribution based on the <a href="https://nixos.org">Nix package manager</a> with a focus on reproducibility and reliability. Its unique take on package and system management allows it to avoid system breakages and dependency conflicts between different packages and also provides an easy way to track system configuration.
+  <strong>NixOS</strong> is an independent distribution based on the <a href="https://nixos.org">Nix package manager</a> with a focus on reproducibility and reliability.
 
   NixOS's package manager keeps every version of every package in a different folder in the **Nix store**. Due to this you can have different versions of the same package installed on your system. After the package contents have been written to the folder, the folder is made read-only. 
 
