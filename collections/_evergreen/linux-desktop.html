@@ -98,7 +98,11 @@ Linux is a great choice if your goal is to:
 <h5>Arch-based distributions</h5>
 <p>Arch based systems are not recommended for new users, regardless of the distribution. Arch does not have an update mechanism for the software stack using pacman, and the user is expected to maintain their own system and swapping out components of the stack when they become obsolete.</p>
 <p>The user is also expected to have sufficient Linux knowledge to properly set up security for their system such as enabling a mandatory access control system, doing firewalling, setting up kernel module blacklists, hardening boot parameters and sysctl, and so on. Simply getting the system installed is not enough.</p>
-<p>For advanced users, we only recommend Arch Linux, not any of its derivatives.</p>
+<p>For advanced users, we only recommend Arch Linux, not any of its derivatives. In fact, 2 very popular Arch derivatives are not so great:</p>
+<ul>
+    <li>Manjaro: They hold packages back for 2 weeks to make sure that their own changes don't break, not to make sure that upstream is stable. AUR packages on the other hand often expect the latest and greatest packages on Arch's own repository, which sometimes lead to dependency mismatch.</li>
+    <li>Garuda: They use <a href="https://aur.chaotic.cx/">Chaotic-AUR</a> which automatically and blindly compiles packages from the AUR. There is no verification process to make sure that the AUR packages themselve don't turn malicious.</li>
+</ul>
 
 <h2 id="os-installation" class="anchor">
     <a href="#os-installation"><i class="fas fa-link anchor-icon"></i></a>
