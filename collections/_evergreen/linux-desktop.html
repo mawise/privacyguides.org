@@ -93,7 +93,7 @@ Linux is a great choice if your goal is to:
 <p>With these distributions, you essentially can have your cake and eat it too. You can update fast, stay close to upstream and get most of the security fixes, and simply rollback and wait out whenever something goes wrong.</p>
 
 <h5>"Security-focused" distributions</h5>
-<p>Distributions like Kali Linux, Black Arch, Parrot OS, etc are penetration testing distributions. They are meant to be used as an attacker machine, not as a tool to protect you, the end user. This is a common misconception about these distributions among Linux newcomers. Avoid using these distributions as your daily driver.</p>
+<p>Unfortunately, a quick search for "the most secure Linux distribution" will often give results like Kali Linux, Black Arch, Parrot OS. These distributions penetration testing distributions - they are meant to be used as an attacker machine, not as a tool to protect the user. Avoid using these distributions as your daily driver.</p>
 
 <h5>Arch-based distributions</h5>
 <p>Arch based systems are not recommended for new users, regardless of the distribution. Arch does not have an update mechanism for the software stack using pacman, and the user is expected to maintain their own system and swapping out components of the stack when they become obsolete.</p>
@@ -108,15 +108,15 @@ Linux is a great choice if your goal is to:
 <h5>Drive Encryption</h5>
 <p>Unlike Bitlocker on Windows and FileVault on macOS, LUKS encryption on Linux is very problematic to set up after a system has been installed. We recommend that you enable drive encryption during the installation process of any Linux distributions.</p>
 
+<h5>Swap</h5>
+<p>Consider using <a href="https://wiki.archlinux.org/title/Swap#zram-generator">ZRAM</a> or <a href="https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption">encrypted SWAP</a> instead of unencrypted swap to avoid potential security issues with sensitive data being pushed to swap space.</p>
+<p>On Fedora, ZRAM is configured out of the box.</p>
+
 <h5>Desktop environment/Window managers</h5>
 <p>Along with your choice of a distribution, your choice of a desktop environment or window manager is integral to your Linux experience. However, there are a few things you should consider in regards to security and privacy.</p>
 <p>On Linux, the Xorg display server is extremely problematic. It was never designed with access control in mind, and all xorg windows can access all of the other xorg windows. Effectively, this allows any app to keylog and record the user's screen without any permission.</p>
 <p>Nested X11 solutions like Xpra and Xephr can sandbox Xorg windows, but they come with a great performance cost and a lot of inconveniences.</p>
 <p><a href="https://wayland.freedesktop.org/">Wayland</a> solves this problem by isolating each window and requring apps to request permission for screen recording. Thus, we recommend using desktop environments/window managers that works with Wayland. As of now, the list of desktop environments/window managers that support Wayland includes <a href="https://www.gnome.org">GNOME</a>, <a href="https://kde.org">KDE</a>, and <a href="https://swaywm.org">Sway</a>.</p>
-
-<h5>Swap</h5>
-<p>Consider using <a href="https://wiki.archlinux.org/title/Swap#zram-generator">ZRAM</a> or <a href="https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption">encrypted SWAP</a> instead of unencrypted swap to avoid potential security issues with sensitive data being pushed to swap space.</p>
-<p>On Fedora, ZRAM is configured out of the box.</p>
 
 <h5>Proprietary firmware/microcode updates</h5>
 <p>On libre or DIY distributions, the proprietary microcode update often does not come installed by default. We <strong>highly recommend</strong> that you install the microcode updates, as your CPU is already running the proprietary microcode anyways. Your choices boil down to using an oudated microcode with known security vulnerabilities or an updated one with the fixes for those vulnerabilities, and there is no reason to choose the former.</p>
