@@ -159,7 +159,14 @@ Linux is a great choice if your goal is to:
 <p>On Fedora, SELinux comes preconfigured with targetted policies and will confine system daemons out of the box. We recommend that you never turn off SELinux or put it into permissive mode on Fedora.</p>
 <p>On openSUSE, the user has a choice of AppArmor or SELinux during the installation process. We recommend sticking to the default for each variant (AppArmor for Tumbleweed and SELinux for MicroOS). openSUSE's SELinux policies are derived from those from Fedora.</p>
 <p>Arch and Arch-based operating systems often do not come with a mandatory access control system out of the box. We highly recommend that you follow the <a href="https://wiki.archlinux.org/title/AppArmor">Arch Wiki</a> to set up AppArmor.</p>
-<p>For advanced users, we also recommend making additional policies/profiles for your mandatory access control system.</p>
+
+<h5>Making your own policies/profiles</h5>
+<p>For advanced users, you can make your own AppArmor profile, SELinux policies, Bubblewrap profiles, Seccomp blacklist to have better confinement of applications. This is quite a tedious and complicated task so we won't go into detail of how to do it here, but we do have a few projects that you could use as reference.</p>
+<ul>
+    <li>Whonix's <a href="https://github.com/Whonix/apparmor-profile-everything">AppArmor Everything</a></li>
+    <li>Krathalan's<a href="https://github.com/krathalan/apparmor-profiles">AppArmor Profiles</li>
+    <li>noatsecure's <a href="https://github.com/noatsecure/hardhat-selinux-templates">SELinux templates</li>
+</ul>
 
 <h2 id="additional-hardening" class="anchor">
     <a href="#additional-hardening"><i class="fas fa-link anchor-icon"></i></a>
