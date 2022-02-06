@@ -4,10 +4,10 @@ logo: /assets/img/linux-desktop/fedora-workstation.svg
 labels: 'color==info::icon==fas fa-fw fa-trophy::text==Beginner friendly::tooltip==We highly recommend that new Linux users use Fedora Workstation.'
 description: |
   <strong>Fedora Workstation</strong> is our recommendation for users new to Linux.
-  
+
   The distribution has a semi-rolling release cycle. While some packages like GNOME are frozen until the next Fedora release, most packages - including the kernel - are updated very frequently throughout a life span of a release. Each Fedora release is supported for one year, with a new version released every 6 months. Fedora comes with mostly sane defaults out of the box.
 
-  Fedora tends to be an early adopter of new technologies such as <a href="https://wayland.freedesktop.org/">Wayland</a>, <a href="https://pipewire.org/">PipeWire</a>, and soon, <a href="https://fedoraproject.org/wiki/Changes/FsVerityRPM">FS-Verity</a>. These new technologies often come with improvements in security, privacy, and usability. 
+  Fedora tends to be an early adopter of new technologies such as <a href="https://wayland.freedesktop.org/">Wayland</a>, <a href="https://pipewire.org/">PipeWire</a>, and soon, <a href="https://fedoraproject.org/wiki/Changes/FsVerityRPM">FS-Verity</a>. These new technologies often come with improvements in security, privacy, and usability.
 
 website: 'https://getfedora.org'
-privacy_policy: 'https://fedoraproject.org/wiki/Legal:PrivacyPolicy#:~:text=Fedora%20may%20share%20your%20personal,described%20in%20this%20Privacy%20Statement.'
+privacy_policy: 'https://fedoraproject.org/wiki/Legal:PrivacyPolicy#Sharing_Your_Personal_Data'
