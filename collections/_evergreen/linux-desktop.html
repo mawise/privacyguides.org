@@ -86,9 +86,11 @@ Linux is a great choice if your goal is to:
 
 <h5>Distributions with atomic/transactional updates</h5>
 <p>If you are not comfortable with fast moving distributions, consider using one with an atomic or transactional update system.</p>
-<p>In a system with atomic update, and update is either applied fully or completely diregarded. An update cannot suddenly fail and be applied half way through. Typically, a system with atomic update will provide an easy way to roll the system back to a previous state should a bug occur after an update as well.</p>
+<p>On a system with atomic update, and update is either applied fully or completely diregarded. An update cannot suddenly fail and be applied half way through. Typically, a system with atomic update will provide an easy way to roll the system back to a previous state should a bug occur after an update as well.</p>
+<p>On a system with transactional update, a system snapshot is made right before and after an update is applied. If an update fail half way through, or if you encouter some bugs after the update, rolling back is very easy as well.
 <p><a href="https://blog.samalik.com/">Adam Samalik</a> has a great demonstration of how rpm-ostree and atomic updates work:</p>
 <iframe width="731" height="411" src="https://www.youtube.com/embed/-hpV5l-gJnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>With these distributions, you essentially can have your cake and eat it too. You can update fast, stay close to upstream and get most of the security fixes, and simply rollback and wait out whenever something goes wrong.</p>
 
 <h5>"Security-focused" distributions</h5>
 <p>Distributions like Kali Linux, Black Arch, Parrot OS, etc are penetration testing distributions. They are meant to be used as an attacker machine, not as a tool to protect you, the end user. This is a common misconception about these distributions among Linux newcomers. Avoid using these distributions as your daily driver.</p>
@@ -99,7 +101,7 @@ Linux is a great choice if your goal is to:
 
 <h2 id="os-installation" class="anchor">
     <a href="#os-installation"><i class="fas fa-link anchor-icon"></i></a>
-    OS installation
+    Things to consider when installing your Linux distribution
 </h2>
 
 <h5>Drive Encryption</h5>
@@ -109,7 +111,11 @@ Linux is a great choice if your goal is to:
 <p>Along with your choice of a distribution, your choice of a desktop environment or window manager is integral to your Linux experience. However, there are a few things you should consider in regards to security and privacy.</p>
 <p>On Linux, the Xorg display server is extremely problematic. It was never designed with access control in mind, and all xorg windows can access all of the other xorg windows. Effectively, this allows any app to keylog and record the user's screen without any permission.</p>
 <p>Nested X11 solutions like Xpra and Xephr can sandbox Xorg windows, but they come with a great performance cost and a lot of inconveniences.</p>
-<p><a href="https://wayland.freedesktop.org/">Wayland</a> solves this problem by isolating each window and requring apps to request permission for screen recording. Thus, we only recommend using desktop environments/window managers that works with Wayland. As of now, the list of desktop environments/window managers that support Wayland includes <a href="https://www.gnome.org">GNOME</a>, <a href="https://kde.org">KDE</a>, and <a href="https://swaywm.org">Sway</a>.</p>
+<p><a href="https://wayland.freedesktop.org/">Wayland</a> solves this problem by isolating each window and requring apps to request permission for screen recording. Thus, we recommend using desktop environments/window managers that works with Wayland. As of now, the list of desktop environments/window managers that support Wayland includes <a href="https://www.gnome.org">GNOME</a>, <a href="https://kde.org">KDE</a>, and <a href="https://swaywm.org">Sway</a>.</p>
+
+<h5>Swap</h5>
+<p>Consider using <a href="https://wiki.archlinux.org/title/Swap#zram-generator">ZRAM</a> or <a href="https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption">encrypted SWAP</a> instead of unencrypted swap to avoid potential security issues with sensitive data being pushed to swap space.</p>
+<p>On Fedora, ZRAM is configured out of the box.</p>
 
 <h5>Proprietary firmware/microcode updates</h5>
 <p>On libre or DIY distributions, the proprietary microcode update often does not come installed by default. We <strong>highly recommend</strong> that you install the microcode updates, as your CPU is already running the proprietary microcode anyways. Your choices boil down to using an oudated microcode with known security vulnerabilities or an updated one with the fixes for those vulnerabilities, and there is no reason to choose the former.</p>
@@ -155,33 +161,35 @@ Linux is a great choice if your goal is to:
 <p>Arch and Arch-based operating systems often do not come with a mandatory access control system out of the box. We highly recommend that you follow the <a href="https://wiki.archlinux.org/title/AppArmor">Arch Wiki</a> to set up AppArmor.</p>
 <p>For advanced users, we also recommend making additional policies/profiles for your mandatory access control system.</p>
 
-<h5>Firewalls</h5>
-<p>You should have an inbound Firewall to block connections to your computer at all times. Considering Red Hat's <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-and-configuring-firewalld_configuring-and-managing-networking">documentation</a> on how to setup Firewalld or Ubuntu's <a href="https://help.ubuntu.com/community/UFW">documentation</a> on how to setup UFW.</p>
-<p>Note that these firewall solutions are just frontends to create persistent nftables/iptables rules on your system. An application can still bypass them by creating their own IPTables rules higher up in the nftables/iptables chain. Docker and Podman do exactly this and have their containers bypass Firewalld/UFW rules if their container if a port is mapped to their containers.</p>
-<p>Fedora comes with Firewalld by default, however, their rules are very permissive by default. Consider closing port 1000-65535 with both TCP and UDP after the operating system installation. You should also remove the whitelist for <code>smb-client</code> and <code>mdns</code> services if you do not use them.</p>
-<p>If you are using Flatpak packages, you can revoke their network socket access using Flatseal and prevent them from accessing your network. This permission is not bypassable.</p>
-<p>If you are using non-classic Snap packages on a system with proper snap confinement support (with both AppArmor and CGroupsv1 present), you can use the Snap Store to revoke network permission as well. This is also not bypassable.</p>
-<p>For unconfined applications, solutions like <a href="https://github.com/evilsocket/opensnitch">OpenSnitch</a> and <a href="https://safing.io/portmaster/">Portmaster</a> may help. These applications uses nftables/iptables rules to block network access and are also likely bypassable.</p>
-
 <h2 id="additional-hardening" class="anchor">
     <a href="#additional-hardening"><i class="fas fa-link anchor-icon"></i></a>
     Additional Hardening
 </h2>
 
+<h5>Firewalls</h5>
+<p>You should have an inbound Firewall to block connections to your computer at all times. Considering Red Hat's <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-and-configuring-firewalld_configuring-and-managing-networking">documentation</a> on how to setup Firewalld or Ubuntu's <a href="https://help.ubuntu.com/community/UFW">documentation</a> on how to setup UFW.</p>
+<p>Fedora comes with Firewalld by default, however, their rules are very permissive by default. Consider closing port 1000-65535 with both TCP and UDP after the operating system installation. You should also remove the whitelist for <code>smb-client</code> and <code>mdns</code> services if you do not use them.</p>
+<p>For unconfined applications, solutions like <a href="https://github.com/evilsocket/opensnitch">OpenSnitch</a> and <a href="https://safing.io/portmaster/">Portmaster</a> may help.</p>
+<p>Keep in mind that you are still assuming that none of your apps are malicious, because these Firewalls are based on IPTables/Nftables and a malicious app can simply add its own IPTables/Nftables rule higher up in the chain to bypass it.
+<p>If you are using Flatpak packages, you can revoke their network socket access using Flatseal and prevent them from accessing your network. This permission is not bypassable.</p>
+<p>If you are using non-classic Snap packages on a system with proper snap confinement support (with both AppArmor and CGroupsv1 present), you can use the Snap Store to revoke network permission as well. This is also not bypassable.</p>
+
 <h5>Kernel hardening</h5>
 <p>Consider following section <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl">2.2</a>, <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#boot-parameters">2.3</a> and <a href="https://madaidans-insecurities.github.io/guides/linux-hardening.html#kernel-attack-surface-reduction">2.5</a> on Madaidan's <a href="https://madaians-insecurities.github.io/guides/linux-hardening.html#identifiers">hardening guide</a> for sysctl and boot parameters hardening and kernel attack surface reduction.</p>
 <p>Note that setting <code>kernel.unprivileged_userns_clone=0</code> will stop Flatpak, Podman, Docker, LXC containers from working. Do not set this flag if you are using those technologies.</p>
+
+<h5>Disabling SMT</h5>
+<p>SMT has been the cause of numerous hardware vulnerabilities, and subsequent patches for those vulnerabilities often come with performance penalties that negate most of the performance gain given by SMT. If you followed the "kernel hardening" section above, some kernel parameters already disables SMT. However, if you are not following it, or if the option is available to you, we recommend that you disable it in your firmware as well.</p>
 
 <h5>Linux-Hardened</h5>
 <p>Certain distributions like Arch Linux comes with linux-hardended, a kernel package with hardening patches and more security concious defaults.</p>
 <p>Linux-Hardened comes with <code>kernel.unprivileged_userns_clone=0</code> by default. If you are using Flatpak, Podman, Docker, LXC containers or other technologies that relies on unpriviledged user namespaces, consider setting <code>kernel.unprivileged_userns_clone=1</code>.</p>
 
+<h5>GRSecurity</h5>
+GRSecurity is a set of kernel patches that substantially increase security in the Linux kernel. Even the Linux-Hardened kernel has patches from the Kernel Self Protection Project (KSPP), which was an effort to bring GRSecurity's patches to the upstream kernel. Unfortunately, GRSecurity went closed in 2017. If you have access to the latest GRSecurity patches, it is highly recommended that you use them. 
+
 <h5>Hardened memory allocator</h5>
 <p>The <a href="https://github.com/GrapheneOS/hardened_malloc">hardened memory allocator</a> from <a href="https://grapheneos.org/">GrapheneOS</a> can be used on Linux distributions. It is available by default on Whonix and is available as an <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">AUR package</a> on Arch based distributions. If you are using the AUR package, consider setting up <code>LD_PRELOAD</code> as described in the <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">Arch Wiki</a>.</p>
-
-<h5>Swap</h5>
-<p>Consider using <a href="https://wiki.archlinux.org/title/Swap#zram-generator">ZRAM</a> or <a href="https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption">encrypted SWAP</a> instead of unencrypted swap to avoid potential security issues with sensitive data being pushed to swap space.</p>
-<p>On Fedora, ZRAM is configured out of the box.</p>
 
 <h5>Umask</h5>
 <p>If you are not using openSUSE, consider changing the default umask for both regular users and root to 077.</p>
