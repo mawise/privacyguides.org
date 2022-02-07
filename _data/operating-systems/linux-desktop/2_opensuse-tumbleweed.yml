@@ -2,10 +2,10 @@ title: openSUSE Tumbleweed
 type: Recommendation
 logo: /assets/img/linux-desktop/opensuse-tumbleweed.svg
 description: |
-  <strong>openSUSE Tumbleweed</strong> very stable <a href="https://en.wikipedia.org/wiki/Rolling_release">rolling release</a> distribution.
+  <strong>openSUSE Tumbleweed</strong> stable <a href="https://en.wikipedia.org/wiki/Rolling_release">rolling release</a> distribution.
 
-  While Tumbleweed follows a rolling release model, each update is release as a snapshot of the distribution. The user upgrades their system to a new snapshot rather than updating individual packages like a normal rolling release distribution. Each snapshot is run through a series of automated tests by the <a href="https://build.opensuse.org">openSUSE Build Service</a> to ensure its quality.
+  Tumbleweed follows a rolling release model, each update is released as a snapshot of the distribution. When the user upgrades their system, a new snapshot is downloaded. Each snapshot is run through a series of automated tests by the <a href="https://build.opensuse.org">openSUSE Build Service</a> to ensure its quality.
 
-  openSUSE Tumbleweed has a transactional update system with <a href="https://en.wikipedia.org/wiki/Btrfs">Btrfs</a> and <a href="https://en.opensuse.org/openSUSE:Snapper_Tutorial">Snapper</a> - a snapshot of the system is created immediately before and after each action with its package manager for easy rollback.
+  openSUSE Tumbleweed has a <a href="https://kubic.opensuse.org/blog/2018-04-04-transactionalupdates/">transactional update</a> system that uses <a href="https://en.wikipedia.org/wiki/Btrfs">Btrfs</a> and <a href="https://en.opensuse.org/openSUSE:Snapper_Tutorial">Snapper</a> to ensure that snapshots can be rolled back, should there be a problem.
 
 website: 'https://get.opensuse.org/tumbleweed/'
