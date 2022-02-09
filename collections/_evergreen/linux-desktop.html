@@ -203,7 +203,7 @@ Linux is a great choice if your goal is to:
 <p>Linux-Hardened comes with <code>kernel.unprivileged_userns_clone=0</code> by default. If you are using Flatpak, Podman, Docker, LXC containers or other technologies that relies on unpriviledged user namespaces, consider setting <code>kernel.unprivileged_userns_clone=1</code>.</p>
 
 <h5>GRSecurity</h5>
-GRSecurity is a set of kernel patches that substantially increase security in the Linux kernel. Even the Linux-Hardened kernel has patches from the Kernel Self Protection Project (KSPP), which was an effort to bring GRSecurity's patches to the upstream kernel. Unfortunately, GRSecurity went closed in 2017. If you have access to the latest GRSecurity patches, it is highly recommended that you use them. 
+GRSecurity is a set of kernel patches that substantially increase security in the Linux kernel. Unfortunately, it went closed in 2017. If you have access to the latest GRSecurity patches, it is highly recommended that you use them. 
 
 <h5>Hardened memory allocator</h5>
 <p>The <a href="https://github.com/GrapheneOS/hardened_malloc">hardened memory allocator</a> from <a href="https://grapheneos.org/">GrapheneOS</a> can be used on Linux distributions. It is available by default on Whonix and is available as an <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">AUR package</a> on Arch based distributions. If you are using the AUR package, consider setting up <code>LD_PRELOAD</code> as described in the <a href="https://wiki.archlinux.org/title/Security#Hardened_malloc">Arch Wiki</a>.</p>
